@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 500px;
 }
 
 .App-logo {
@@ -35,4 +36,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#map {
+  height: 500px;
 }

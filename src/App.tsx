@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import './App.css';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Map from './Map'
 
@@ -9,10 +8,9 @@ const render = (status: Status): ReactElement => {
   return <></>;
 };
 
-
 function App() {
   if (!process.env.REACT_APP_GOOGLE_KEY) {
-    return <h2>Need to add google key</h2>
+    return <h2>Add google key</h2>
   }
   return (
     <div className="App">

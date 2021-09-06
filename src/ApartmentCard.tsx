@@ -15,6 +15,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 230,
     position: 'relative',
+    zIndex: 1001,
   },
   media: {
     height: 100,
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     left: 0,
     top: 0,
-    zIndex: 1000,
+    zIndex: 1001,
     background: 'white',
     width: '25px',
     height: '25px'

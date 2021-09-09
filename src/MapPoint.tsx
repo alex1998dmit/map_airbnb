@@ -1,3 +1,4 @@
+import React from "react"
 import { useEffect, useRef, useState } from "react"
 import ApartmentCard from "./ApartmentCard"
 import ApartmentPoint from "./ApartmentPoint"
@@ -10,11 +11,17 @@ type MapPointProps = {
   floor: number
   floor_count: number
   rent: number
+  map: google.maps.Map | null
+  lat: number
+  lng: number
 }
 
 const MapPoint = (props: MapPointProps) => {
   const [opened, setIsOpened] = useState<boolean>(false)
-  const handleOnOpen = () => setIsOpened(true)
+  const handleOnOpen = () => {
+    setIsOpened(true)
+    if (props.map) props.map.panTo({ lat: props.lat, lng: props.lng })
+  }
   const handleOnClose = () => setIsOpened(false)
   const containerRef = useRef<HTMLDivElement>(null)
   

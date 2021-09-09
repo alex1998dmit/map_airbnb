@@ -10,7 +10,7 @@ function createOverlayElement() {
 }
   
 export type Props = {
-  map: any
+  map: google.maps.Map | null
   position: { lat: number, lng: number }
   children?: React.ReactChild
 }
@@ -34,6 +34,7 @@ const OverlayContainer = (props: Props) => {
     };
   
     onRemove = () => {
+      console.log(this.content.parentElement)
       if (this.content?.parentElement) {
         this.content.parentElement.removeChild(this.content);
       }

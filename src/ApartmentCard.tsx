@@ -39,7 +39,7 @@ type ApartmentCardProps = {
   floor: number
   floor_count: number
   rent: number
-  handleClose: () => void
+  handleClose?: () => void
 }
 
 export default function ApartmentCard(props: ApartmentCardProps) {

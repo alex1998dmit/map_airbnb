@@ -13,7 +13,6 @@ const styles = makeStyles({
     width: '60px',
     zIndex: 1000,
     position: 'relative'
-    // border: 'none'
   }
 })
 

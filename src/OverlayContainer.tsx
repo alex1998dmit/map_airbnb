@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 function createOverlayElement() {
@@ -8,37 +8,37 @@ function createOverlayElement() {
   el.style.width = '9999px';
   return el;
 }
-  
+
 export type Props = {
-  map: any
-  position: { lat: number, lng: number }
-  children?: React.ReactChild
-}
+  map: any;
+  position: { lat: number; lng: number };
+  children?: React.ReactChild;
+};
 
 const OverlayContainer = (props: Props) => {
-  const overlay = React.useRef<google.maps.OverlayView | null>(null)
-  const el = React.useRef<Element | null>(null)
+  const overlay = React.useRef<google.maps.OverlayView | null>(null);
+  const el = React.useRef<Element | null>(null);
 
   class OverlayView extends window.google.maps.OverlayView {
     position: google.maps.LatLng | null = null;
     content: any = null;
-  
+
     constructor(props: any) {
       super();
       props.position && (this.position = props.position);
       props.content && (this.content = props.content);
     }
-  
+
     onAdd = () => {
       if (this.content) this.getPanes().floatPane.appendChild(this.content);
     };
-  
+
     onRemove = () => {
       if (this.content?.parentElement) {
         this.content.parentElement.removeChild(this.content);
       }
     };
-  
+
     draw = () => {
       if (this.position) {
         const divPosition = this.getProjection().fromLatLngToDivPixel(
@@ -49,25 +49,23 @@ const OverlayContainer = (props: Props) => {
       }
     };
   }
-  
+
   React.useEffect(() => {
     return () => {
-      if (overlay.current) overlay.current.setMap(null)
-    }
-  }, [])
+      if (overlay.current) overlay.current.setMap(null);
+    };
+  }, []);
 
   if (props.map) {
-    el.current = el.current || createOverlayElement()
-    overlay.current = overlay.current || new OverlayView(
-      {
-        position: new google.maps.LatLng(props.position.lat, props.position.lng),
-        content: el.current
-      }
-    )
-    overlay.current.setMap(props.map)
+    el.current = el.current || createOverlayElement();
+    overlay.current = new OverlayView({
+      position: new google.maps.LatLng(props.position.lat, props.position.lng),
+      content: el.current,
+    });
+    overlay.current.setMap(props.map);
     return ReactDOM.createPortal(props.children, el.current);
   }
-  return null
-}
+  return null;
+};
 
-export default OverlayContainer
+export default OverlayContainer;
